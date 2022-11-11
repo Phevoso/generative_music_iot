@@ -76,6 +76,7 @@ def extractSensorData(message):
 # Harvesting Data from the Mqtt Server
 print("creating new mqtt client instance")
 client = mqtt.Client(server_info.client_name)
+client.username_pw_set(server_info.username, server_info.password)
 
 print("connecting to broker")
 client.connect(server_info.ip_adress, 1883)

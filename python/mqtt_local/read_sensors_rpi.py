@@ -20,6 +20,7 @@ server_info = parse_args()
 
 #Connet to MQTT
 mqttc = mqtt.Client(server_info.client_name)
+mqttc.username_pw_set(server_info.username, server_info.password)
 mqttc.connect(server_info.ip_adress, 1883)
 
 #Connect to mongoDB
