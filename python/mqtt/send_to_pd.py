@@ -1,9 +1,10 @@
-import time
-import os
-import paho.mqtt.client as mqtt
+# This script uses the Message Broker to receive messages from an MQTT connection.
+# subscribes to a topic, and then passes the received messages though sockets in Pure Data.
+
 import json
 import socket
 import pprint
+import paho.mqtt.client as mqtt
 from connection_arguments import *
 
 #Parse info required for the mqtt connection and specific to this sensor
@@ -19,15 +20,20 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #Connect to host
 s.connect((pd_host, pd_port))
 
-def on_message(client, userdata, message):
-    print("message received " ,str(message.payload.decode('utf-8')))
 
+def on_connect(mqttc, obj, flags, rc):
+    print("rc: " + str(rc))
+
+
+def on_message(mqttc, obj, msg):
+    payload = msg.payload
     # Convert incoming json string to python dict
-    json_dict = json.loads(str(message.decode('utf-8')))
-
+    json_dict = json.loads(str(payload.decode('utf-8')))
     #Send it to Pure Data
     sensorDataToPd(json_dict)
 
+def on_subscribe(mqttc, obj, mid, granted_qos):
+    print("Subscribed: " + str(mid) + " " + str(granted_qos))
 
 def sensorDataToPd(message=''):
     #Print the received JSON
@@ -73,20 +79,17 @@ def extractSensorData(message):
 
     return messageToPd
 
-# Harvesting Data from the Mqtt Server
-print("creating new mqtt client instance")
-client = mqtt.Client(server_info.client_name)
-client.username_pw_set(server_info.username, server_info.password)
 
-print("connecting to broker")
-client.connect(server_info.ip_adress, 1883)
+# If you want to use a specific client id, use
+# mqttc = mqtt.Client("client-id")
+# but note that the client id must be unique on the broker. Leaving the client
+# id parameter empty will generate a random id for you.
+mqttc = mqtt.Client()
+mqttc.on_message = on_message
+mqttc.on_connect = on_connect
+mqttc.on_subscribe = on_subscribe
 
-print("Subscribing to topic", server_info.topic)
-client.subscribe(server_info.topic)
+mqttc.connect(server_info.ip_adress, 1883, 60)
+mqttc.subscribe(server_info.mqtt_topic)
 
-client.on_message=on_message
-client.loop_start()
-
-while True:
-        print(".") #while no data is send , print this
-        time.sleep(3)
+mqttc.loop_forever()

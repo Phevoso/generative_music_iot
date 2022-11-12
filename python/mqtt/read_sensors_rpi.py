@@ -7,10 +7,8 @@ import Adafruit_DHT
 import smbus
 import pymongo
 from pymongo import MongoClient
-import logging
 import time
 import datetime
-import argparse
 import json
 import pprint
 from connection_arguments import *
@@ -19,13 +17,18 @@ from connection_arguments import *
 server_info = parse_args()
 
 #Connet to MQTT
-mqttc = mqtt.Client(server_info.client_name)
-mqttc.username_pw_set(server_info.username, server_info.password)
+mqttc = mqtt.Client()
 mqttc.connect(server_info.ip_adress, 1883)
 
-#Connect to mongoDB
-mongoClient = MongoClient(server_info.mongo_client_key)
-db=mongoClient.SensorData
+if server_info.use_mongodb:
+    #Connect to mongoDB
+    mongoClient = MongoClient(server_info.mongo_client_key)
+    # Define mongoDB database
+    db=mongoClient.SensorData
+    # Define collections for each sensor
+    bmpCollection = db.BMP_sensor
+    dthCollection=db.temp_hum
+    gy30Collection=db.light_lvl
 
 # ----- Read Sensor Data -----
 
@@ -67,10 +70,6 @@ def readLight(addr=DEVICE):
   data = bus.read_i2c_block_data(addr,ONE_TIME_HIGH_RES_MODE_1)
   return convertToNumber(data)
 
-
-#BMP180
-bmpCollection = db.BMP_sensor
-
 def readBMP180Data():
     sensor = BMP085.BMP085()
     post = []
@@ -90,9 +89,6 @@ def readBMP180Data():
     }
     return post
 
-#DTH 
-dthCollection=db.temp_hum
-
 def readDTHData():
     utc_time = str(datetime.datetime.now().time())
     utc_time = utc_time.replace(":", ' ')
@@ -110,9 +106,6 @@ def readDTHData():
     }  
     return post
 
-#GY-30
-gy30Collection=db.light_lvl
-
 def readGY30Data():
     lightLevel= float(readLight())
     print("Light Level : " + format(lightLevel,'.2f') + " lx")
@@ -124,6 +117,8 @@ def readGY30Data():
         "Time": str(utc_time)
     }
     return post
+
+# ----- Publish Sensor Data -----
 
 sensorNames = ["BMP180", "DTH", "GY30"]
 
@@ -138,9 +133,10 @@ while True:
 
             # Publish message to MQTT
             mqttc.publish(server_info.topic, str(messageJSON))
-
-            #Publish JSON to MongoDB
-            bmpCollection.insert_one(bmpData)
+            
+            if server_info.use_mongodb:
+                #Publish JSON to MongoDB
+                bmpCollection.insert_one(bmpData)
 
         elif sensor == sensorNames[1]:
 
@@ -150,7 +146,8 @@ while True:
 
             mqttc.publish(server_info.topic, str(messageJSON))
 
-            dthCollection.insert_one(dthData)
+            if server_info.use_mongodb:
+                dthCollection.insert_one(dthData)
 
         elif sensor == sensorNames[2]:
 
@@ -159,6 +156,7 @@ while True:
             messageJSON = json.dumps(gy30Data)
 
             mqttc.publish(server_info.topic, str(messageJSON))
-            
-            gy30Collection.insert_one(gy30Data)
+            if server_info.use_mongodb:
+                gy30Collection.insert_one(gy30Data)
+                
         time.sleep(1)   
