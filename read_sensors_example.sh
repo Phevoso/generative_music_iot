@@ -10,6 +10,5 @@
 
 ip_adress="mqtt.eclipseprojects.io"
 mqtt_topic="sensors"
-use_mongodb=false
 
-python3 /home/pi/generative_music_iot/python/mqtt/read_sensors_rpi.py -i $ip_adress -t $mqtt_topic --use_mongodb $use_mongodb &
+python3 /home/pi/generative_music_iot/python/mqtt/read_sensors_rpi.py -i $ip_adress -t $mqtt_topic &

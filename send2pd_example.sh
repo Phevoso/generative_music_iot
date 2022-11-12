@@ -8,4 +8,4 @@ pd_host="localhost"
 pd_port="3000"
 
 
-python3 send_to_pd.py -i $ip_adress -c $client_name -t $mqtt_topic --pd-host $pd_host  &
+python3 python/mqtt/send_to_pd.py -i $ip_adress -c $client_name -t $mqtt_topic --pd-host $pd_host  &
