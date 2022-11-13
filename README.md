@@ -33,7 +33,14 @@ To set an account and get started, follow the [Developer's Guide](https://docs.a
 | [GY-30](http://wiki.sunfounder.cc/index.php?title=GY-30_Digital_Light_Intensity_Measuring_Module)    | Ambient Light Sensor   | Light Level (lux) |
 | [Pi Camera Module](https://projects.raspberrypi.org/en/projects/getting-started-with-picamera)   | Any camera module should do | Number of objects detected, (X,Y)coordinates |
 
-### Schematics
+### Sensor connection with the raspberry pi
+
+#### - BMP180 
+![alt text](https://github.com/Phevoso/generative_music_iot/blob/main/images/bmp180_schematic.jpg?raw=true)
+#### - DTH11 
+![alt text](https://github.com/Phevoso/generative_music_iot/blob/main/images/dth11_schematic.jpg?raw=true)
+#### - GY-30
+![alt text](https://github.com/Phevoso/generative_music_iot/blob/main/images/gy-30_schematic.jpg?raw=true)
 
 ### Third-party libraries
 - [TensorFlow Lite](https://github.com/tensorflow/tflite-micro) used for object detection with the camera module.
