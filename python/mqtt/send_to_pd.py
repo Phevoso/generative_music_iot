@@ -90,6 +90,6 @@ mqttc.on_connect = on_connect
 mqttc.on_subscribe = on_subscribe
 
 mqttc.connect(server_info.ip_adress, 1883, 60)
-mqttc.subscribe(server_info.mqtt_topic)
+mqttc.subscribe(server_info.topic)
 
 mqttc.loop_forever()
