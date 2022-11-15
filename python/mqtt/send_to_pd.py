@@ -8,7 +8,7 @@ import paho.mqtt.client as mqtt
 from connection_arguments import *
 
 #Parse info required for the mqtt connection and specific to this sensor
-server_info = parse_args()
+server_info = get_generic_parser().parse_args()
 
 #Pure Data info
 pd_host = server_info.pd_host

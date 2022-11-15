@@ -1,6 +1,6 @@
 import argparse
 
-def parse_args():
+def get_generic_parser():
 
     parser = argparse.ArgumentParser(description='Type the I.P of the MQTT server.') 
 
@@ -18,5 +18,5 @@ def parse_args():
                     help="TCP port to open communication with Pure Data",)
     
 
-    args = parser.parse_args()
-    return args
+    #args = parser.parse_args()
+    return parser #Returning the parser instead in order to have the option to add additional script-specific arguments.
