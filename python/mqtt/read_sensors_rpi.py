@@ -13,8 +13,16 @@ import json
 import pprint
 from connection_arguments import *
 
+
+#Initialize parser with common arguments
+local_parser = get_generic_parser()
+
+#Add Script specific arguments
+local_parser.add_argument('--interval', '-in', type=int, default=1, help="Specify interval at which sensor data is published.")
+local_parser.add_argument('--stagger', '-s', type=int, help="Stagger publish of data between sensors by a specified amount of sconds.")
+
 #Parse info required for the mqtt connection and specific to this sensor
-server_info = parse_args()
+server_info = local_parser.parse_args()
 
 #Connet to MQTT
 mqttc = mqtt.Client()
@@ -124,39 +132,36 @@ sensorNames = ["BMP180", "DTH", "GY30"]
 
 while True:
 
-    for sensor in sensorNames:
-        if sensor == sensorNames[0]:
-            #Read sensor data and convert it to JSON
-            bmpData = readBMP180Data()
-            pprint.pprint(bmpData)
-            messageJSON = json.dumps(bmpData)
+    #Read sensor data and convert it to JSON
+    
+    #BMP180
+    bmpData = readBMP180Data()
+    pprint.pprint(bmpData)
+    bmp_data_json = json.dumps(bmpData)     
+    
+    #DTH
+    dthData = readDTHData()
+    pprint.pprint(dthData)
+    dth_data_json = json.dumps(dthData) 
 
-            # Publish message to MQTT
-            mqttc.publish(server_info.topic, str(messageJSON))
-            
-            if server_info.use_mongodb:
-                #Publish JSON to MongoDB
-                bmpCollection.insert_one(bmpData)
+    #GY30
+    gy30Data = readGY30Data()
+    pprint.pprint(gy30Data)
+    gy30_data_json = json.dumps(gy30Data)
 
-        elif sensor == sensorNames[1]:
+    #Store in MngoDB
+    if server_info.use_mongodb:
+        bmpCollection.insert_one(bmpData)
+        dthCollection.insert_one(dthData)
+        gy30Collection.insert_one(gy30Data)
 
-            dthData = readDTHData()
-            pprint.pprint(dthData)
-            messageJSON = json.dumps(dthData)
+    # Publish messages to MQTT
+    mqttc.publish(server_info.topic, str(bmp_data_json))
+    time.sleep(server_info.stagger) if server_info.stagger != 'None' else None        
 
-            mqttc.publish(server_info.topic, str(messageJSON))
+    mqttc.publish(server_info.topic, str(dth_data_json))
+    time.sleep(server_info.stagger) if server_info.stagger != 'None' else None
 
-            if server_info.use_mongodb:
-                dthCollection.insert_one(dthData)
-
-        elif sensor == sensorNames[2]:
-
-            gy30Data = readGY30Data()
-            pprint.pprint(gy30Data)
-            messageJSON = json.dumps(gy30Data)
-
-            mqttc.publish(server_info.topic, str(messageJSON))
-            if server_info.use_mongodb:
-                gy30Collection.insert_one(gy30Data)
+    mqttc.publish(server_info.topic, str(gy30_data_json))       
                 
-        time.sleep(1)   
+    time.sleep(server_info.interval)   
