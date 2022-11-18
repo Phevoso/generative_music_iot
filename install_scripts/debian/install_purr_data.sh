@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 readc()
 {
     if [ -t 0 ]; then
@@ -24,13 +23,10 @@ readc()
 }
 
 sudo clear
-echo -e "\e[1;33mWARNING: This script currently only supports Debian-based Linux Distros.\n\nPress any key to continue or ESC to exit...\033[0m"
+echo -e "\e[1;33mWARNING: This script only supports Debian-based Distros.\n\nPress any key to continue or ESC to exit...\033[0m"
 
-
-# Reads one character.
 readc key
 
-# Acts according to what has been pressed.
 case "$key" in
   "$(printf '%b' '\033')") 
   echo -e "\nExiting...\n";;
