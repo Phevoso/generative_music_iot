@@ -5,6 +5,8 @@ This directory contains helper scripts that install all package and library depe
 ## Compatability
 When it comes to the client system, the installer scripts currently only support Debian-based Linux Distros. All the dependencies are listed in a later section for manual installation.<br/><br/>
 
+Python 3.9 or higher is recommended for this project.<br/><br/>
+
 # Usage
 ## Dependencies Script
 `install_dependencies.sh` in each respective subdirectory can be used to install the required packages and python libraries each device needs.<br/><br/>

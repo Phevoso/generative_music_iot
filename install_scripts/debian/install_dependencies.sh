@@ -32,6 +32,10 @@ case "$key" in
   "$(printf '%b' '\033')")
   echo -e "\nExiting...\n";;
   *)
+        if [[ "$(python3 --version 2>&1)" == *"not found"* ]]; then
+            echo -e "\n\n\e[1;31mError: Python 3 not found!\n\nPyton 3.9 or higher recommended for this project.\033[0m"
+            exit
+        fi
 
         echo -e "\n\n\e[1;33mInstalling Dependencies for Debian client...\033[0m"
 
@@ -56,7 +60,12 @@ case "$key" in
 
         echo -e "\n\n\e[1;33mDone.\033[0m"
 
-        echo -e "\n\n\e[1;33mInstalling Python Libraries\033[0m"
+        if [[ "$(pip --version 2>&1)" == *"not found"* ]]; then
+            echo -e "\n\n\e[1;33mPython 3.x found but not pip!\n\nInstalling python3-pip on system....\033[0m"
+            sudo apt-get -y install python3-pip
+        fi
+        
+        echo -e "\n\n\e[1;33mInstalling Python Libraries\033[0m"        
 
         pip install paho-mqtt pymongo
 
