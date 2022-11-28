@@ -157,10 +157,10 @@ while True:
 
     # Publish messages to MQTT
     mqttc.publish(server_info.topic, str(bmp_data_json))
-    time.sleep(server_info.stagger) if server_info.stagger != 'None' else None        
+    time.sleep(server_info.stagger) if server_info.stagger != None else None        
 
     mqttc.publish(server_info.topic, str(dth_data_json))
-    time.sleep(server_info.stagger) if server_info.stagger != 'None' else None
+    time.sleep(server_info.stagger) if server_info.stagger != None else None
 
     mqttc.publish(server_info.topic, str(gy30_data_json))       
                 

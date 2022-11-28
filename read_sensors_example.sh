@@ -11,4 +11,4 @@
 ip_adress="mqtt.eclipseprojects.io"
 mqtt_topic="sensors"
 
-python3 /home/pi/generative_music_iot/python/mqtt/read_sensors_rpi.py -i $ip_adress -t $mqtt_topic &
+python3 python/mqtt/read_sensors_rpi.py -i $ip_adress -t $mqtt_topic
