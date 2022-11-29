@@ -1,0 +1,28 @@
+#N canvas 330 109 1210 913 12;
+#X obj 109 68 cnv 15 209 93 empty empty vcf_filter 6 8 0 14 #212121
+#00fa92 0;
+#X obj 118 100 hsl 128 20 20 20000 1 0 empty BP~CenterFreq cut-off\ frequency
+-2 -8 0 10 #414141 #00fa92 #00fa92 6353 1;
+#X obj 118 133 hsl 128 20 0 10 0 0 empty BP~Q resonance -2 -8 0 10
+#3c3c3c #00fa92 #00fa92 2509 1;
+#X obj 12 168 inlet~;
+#X obj 70 319 outlet~;
+#X obj 255 105 nbx 5 15 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#424242 #00fa92 #000000 633.488 256 0;
+#X obj 260 140 nbx 5 15 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#424242 #00fa92 #000000 1.97593 256 0;
+#X obj 176 265 bng 32 250 50 0 empty empty Clear 17 7 0 10 #008080
+#000000 #000000;
+#X obj 164 28 inlet;
+#X obj 248 26 inlet;
+#X obj 70 272 fi.resonator;
+#X connect 1 0 5 0;
+#X connect 2 0 6 0;
+#X connect 3 0 10 0;
+#X connect 5 0 10 1;
+#X connect 6 0 10 2;
+#X connect 7 0 10 3;
+#X connect 8 0 1 0;
+#X connect 9 0 2 0;
+#X connect 10 0 4 0;
+#X coords 0 -1 1 1 211 94 1 108 68;

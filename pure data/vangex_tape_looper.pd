@@ -1,0 +1,89 @@
+#N canvas 0 25 1680 913 12;
+#X obj 100 200 cnv 15 129 73 empty empty ~vangex 3 4 0 10 #424242 #73fcd6
+0;
+#X obj 494 218 metro 10000;
+#X obj 540 280 bng 40 250 50 0 empty empty empty 17 7 0 10 #fce0c4
+#000000 #000000;
+#X obj 588 393 line 0 3;
+#X floatatom 588 417 5 0 0 0 - - -, f 5;
+#X obj 588 343 delay 2000;
+#X obj 567 502 *~;
+#X floatatom 586 199 5 0 0 0 - - -, f 5;
+#X text 656 41 Loop Length;
+#X text 767 40 Note Length;
+#X floatatom 697 306 5 0 0 0 - - -, f 5;
+#X obj 586 113 r randomize;
+#X obj 697 228 r randomize;
+#X obj 698 257 random 3000;
+#X obj 699 281 + 1000;
+#X obj 600 620 outlet~;
+#X obj 767 63 inlet;
+#X obj 666 64 inlet;
+#X obj 665 397 outlet;
+#X msg 520 358 0.1 300;
+#X msg 588 367 0 700;
+#X obj 524 459 vangex~;
+#X obj 496 174 inlet;
+#X text 493 149 toggle;
+#X obj 160 220 nbx 5 11 -1e+37 1e+37 0 0 empty empty note_length 0
+-8 0 7 #b5d5ed #000000 #73fcd6 0 256 0;
+#X obj 210 210 bng 14 250 50 0 empty empty Trigger -4 -5 0 5 #c14815
+#000000 #ffd479;
+#X text 401 34 midi_note;
+#X obj 419 91 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 0 256 0;
+#X obj 421 62 inlet;
+#X obj 587 142 random 30000;
+#X obj 586 169 + 10000;
+#X obj 120 570 loadbang;
+#X msg 180 600 2;
+#X msg 190 560 6;
+#X obj 902 67 inlet;
+#X text 874 39 harmonic_modulation;
+#X obj 1038 68 inlet;
+#X text 1040 40 gain;
+#X floatatom 660 480 0 0 80 0 - - -;
+#X obj 110 240 hsl 77 10 0 10 0 0 empty empty gain 3 -5 0 7 #feaf00
+#000000 #ffd479 0 1;
+#X obj 110 220 nbx 5 11 -1e+37 1e+37 0 0 empty empty loop_length -1
+-6 0 7 #b2d4ee #000000 #73fcd6 0 256 0;
+#X obj 600 580 *~;
+#X obj 110 260 hsl 77 10 0 10 0 0 empty empty harmonic\ modulation
+3 -5 0 7 #feaf00 #000000 #ffd479 0 1;
+#X connect 1 0 2 0;
+#X connect 2 0 19 0;
+#X connect 2 0 5 0;
+#X connect 2 0 25 0;
+#X connect 2 0 18 0;
+#X connect 3 0 4 0;
+#X connect 4 0 6 1;
+#X connect 5 0 20 0;
+#X connect 6 0 41 0;
+#X connect 7 0 1 1;
+#X connect 7 0 40 0;
+#X connect 10 0 5 1;
+#X connect 10 0 24 0;
+#X connect 11 0 29 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 10 0;
+#X connect 16 0 13 1;
+#X connect 17 0 29 1;
+#X connect 19 0 3 0;
+#X connect 20 0 3 0;
+#X connect 21 0 6 0;
+#X connect 22 0 1 0;
+#X connect 27 0 21 0;
+#X connect 28 0 27 0;
+#X connect 29 0 30 0;
+#X connect 30 0 7 0;
+#X connect 31 0 33 0;
+#X connect 31 0 32 0;
+#X connect 34 0 42 0;
+#X connect 36 0 39 0;
+#X connect 38 0 41 1;
+#X connect 39 0 38 0;
+#X connect 39 0 21 1;
+#X connect 41 0 15 0;
+#X connect 42 0 21 2;
+#X coords 0 -1 1 1 132 77 1 99 198;
