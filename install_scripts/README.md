@@ -28,7 +28,7 @@ $ ./install_purr_data.sh
 Following is a list of all dependencies.
 <br/>
 
-## <u>MQTT broker</u>
+## <u>IoT server</u>
 
 Packages  
 * mosquitto
