@@ -28,7 +28,7 @@ $ ./install_purr_data.sh
 Following is a list of all dependencies.
 <br/>
 
-## <u>Client</u>
+## <u>MQTT broker</u>
 
 Packages  
 * mosquitto
