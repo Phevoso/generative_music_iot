@@ -34,12 +34,14 @@ To set an account and get started, follow the [Developer's Guide](https://docs.a
 
 ### Sensor connection with the raspberry pi
 
-#### - BMP180 
-![alt text](https://github.com/Phevoso/generative_music_iot/blob/main/images/bmp180_schematic.jpg?raw=true)
-#### - DTH11 
-![alt text](https://github.com/Phevoso/generative_music_iot/blob/main/images/dth11_schematic.jpg?raw=true)
-#### - GY-30
-![alt text](https://github.com/Phevoso/generative_music_iot/blob/main/images/gy-30_schematic.jpg?raw=true)
+#### BMP180 
+<img src="https://github.com/Phevoso/generative_music_iot/blob/main/images/bmp180_schematic.jpg " width="300">
+
+#### DTH11
+<img src="https://github.com/Phevoso/generative_music_iot/blob/main/images/dth11_schematic.jpg " width="300" height="400">
+
+#### GY-30
+<img src="https://github.com/Phevoso/generative_music_iot/blob/main/images/gy-30_schematic.jpg " width="450">
 
 ### Third-party libraries
 - [TensorFlow Lite](https://github.com/tensorflow/tflite-micro) used for object detection with the camera module.
