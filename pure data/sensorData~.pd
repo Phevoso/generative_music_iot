@@ -1,0 +1,246 @@
+#N canvas 0 25 1680 913 12;
+#X msg 420 -30 listen \$1;
+#X obj 420 0 netreceive 3000;
+#X obj 420 -60 r port;
+#X msg 530 -30 listen 3000;
+#X obj 530 -60 loadbang;
+#X obj 460 40 print out;
+#X obj 320 40 s received_bng;
+#N canvas 0 25 1680 925 MongoDB_Data 0;
+#X floatatom 130 430 8 0 0 0 - - -, f 8;
+#X floatatom 380 430 8 0 0 0 - - -, f 8;
+#X floatatom 200 430 10 0 0 0 - - -, f 10;
+#X floatatom 290 430 8 0 0 0 - - -, f 8;
+#X obj 130 390 unpack 0 0 0 0 0;
+#X text 130 360 BPM180_sensor Data;
+#X floatatom 510 430 8 0 0 0 - - -, f 8;
+#X floatatom 590 430 8 0 0 0 - - -, f 8;
+#X text 510 360 DTH Sensor Data;
+#X floatatom 920 430 8 0 0 0 - - -, f 8;
+#X obj 920 400 unpack 0;
+#X text 920 360 GY-30 Light Sensor;
+#X obj 510 390 unpack 0 0 0 0 0;
+#X obj 130 460 s temp;
+#X floatatom 670 430 5 0 0 0 - - -, f 5;
+#X floatatom 720 430 5 0 0 0 - - -, f 5;
+#X floatatom 770 430 5 0 0 0 - - -, f 5;
+#X obj 200 460 s altitude;
+#X obj 290 460 s atmPressure;
+#X obj 390 460 s seaPressure;
+#X obj 610 460 s humidity;
+#X obj 510 460 s temperature;
+#X obj 690 460 s hours;
+#X obj 750 460 s minutes;
+#X obj 820 460 s seconds;
+#X obj 920 460 s lightSensitivity;
+#X obj 90 390 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 480 390 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 890 400 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 130 490 s receivedBMP;
+#X obj 920 500 s receivedGY30;
+#X obj 510 490 s receivedDTH;
+#X floatatom 1280 530 8 0 0 0 - - -, f 8;
+#X floatatom 1350 530 8 0 0 0 - - -, f 8;
+#X obj 1116 356 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 1094 382 s receivedCameraPi;
+#X obj 1350 460 abs;
+#X text 1244 317 Camera Data MongoDB;
+#X obj 1250 350 unpack 0 0 0 0;
+#X obj 1216 446 s score;
+#X obj 1280 400 abs;
+#X floatatom 1216 420 5 0 0 0 - - -, f 5;
+#X obj 1280 570 s xAxis;
+#X obj 1380 570 s yAxis;
+#X obj 1280 430 maxlib/scale 0 500 0 1;
+#X obj 170 10 inlet;
+#X obj 390 160 route BMP180 DHT GY30 CameraPi;
+#X obj 1350 490 maxlib/scale 0 360 0 1;
+#X connect 0 0 13 0;
+#X connect 1 0 19 0;
+#X connect 2 0 17 0;
+#X connect 3 0 18 0;
+#X connect 4 0 0 0;
+#X connect 4 0 26 0;
+#X connect 4 1 1 0;
+#X connect 4 2 2 0;
+#X connect 4 3 3 0;
+#X connect 6 0 21 0;
+#X connect 7 0 20 0;
+#X connect 9 0 25 0;
+#X connect 10 0 9 0;
+#X connect 10 0 28 0;
+#X connect 12 0 6 0;
+#X connect 12 0 27 0;
+#X connect 12 1 7 0;
+#X connect 12 2 14 0;
+#X connect 12 3 15 0;
+#X connect 12 4 16 0;
+#X connect 14 0 22 0;
+#X connect 15 0 23 0;
+#X connect 16 0 24 0;
+#X connect 26 0 29 0;
+#X connect 27 0 31 0;
+#X connect 28 0 30 0;
+#X connect 32 0 42 0;
+#X connect 33 0 43 0;
+#X connect 34 0 35 0;
+#X connect 36 0 47 0;
+#X connect 38 0 34 0;
+#X connect 38 0 41 0;
+#X connect 38 1 40 0;
+#X connect 38 2 36 0;
+#X connect 40 0 44 0;
+#X connect 41 0 39 0;
+#X connect 44 0 32 0;
+#X connect 45 0 46 0;
+#X connect 46 0 4 0;
+#X connect 46 1 12 0;
+#X connect 46 2 10 0;
+#X connect 46 3 38 0;
+#X connect 47 0 33 0;
+#X restore 420 80 pd MongoDB_Data;
+#N canvas 0 25 1680 935 MQTT_Data 0;
+#X floatatom 112 401 8 0 0 0 - - -, f 8;
+#X floatatom 362 401 8 0 0 0 - - -, f 8;
+#X floatatom 182 401 10 0 0 0 - - -, f 10;
+#X floatatom 272 401 8 0 0 0 - - -, f 8;
+#X obj 112 361 unpack 0 0 0 0 0;
+#X text 112 331 BPM180_sensor Data;
+#X floatatom 492 401 8 0 0 0 - - -, f 8;
+#X floatatom 572 401 8 0 0 0 - - -, f 8;
+#X text 492 331 DTH Sensor Data;
+#X floatatom 902 401 8 0 0 0 - - -, f 8;
+#X obj 902 371 unpack 0;
+#X text 862 331 GY-30 Light Sensor;
+#X floatatom 1280 430 8 0 0 0 - - -, f 8;
+#X floatatom 1200 430 8 0 0 0 - - -, f 8;
+#X floatatom 1500 430 8 0 0 0 - - -, f 8;
+#X obj 492 361 unpack 0 0 0 0 0;
+#X obj 112 431 s temp;
+#X floatatom 652 401 5 0 0 0 - - -, f 5;
+#X floatatom 702 401 5 0 0 0 - - -, f 5;
+#X floatatom 752 401 5 0 0 0 - - -, f 5;
+#X obj 182 431 s altitude;
+#X obj 272 431 s atmPressure;
+#X obj 372 431 s seaPressure;
+#X obj 592 431 s humidity;
+#X obj 492 431 s temperature;
+#X obj 672 431 s hours;
+#X obj 732 431 s minutes;
+#X obj 802 431 s seconds;
+#X obj 902 431 s lightSensitivity;
+#X obj 72 401 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 462 361 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 872 371 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 1120 390 bng 20 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 112 461 s receivedBMP;
+#X obj 902 471 s receivedGY30;
+#X obj 1050 430 s receivedCameraPi;
+#X obj 492 461 s receivedDTH;
+#X obj 1210 340 unpack 0 0 s 0;
+#X obj 1370 430 symbol;
+#X obj 1500 470 s score;
+#X obj 1197 387 abs;
+#X obj 1370 470 s objectLabel;
+#X text 1210 300 Camera Data AWS;
+#X obj 1200 470 s xAxis;
+#X obj 1280 470 s yAxis;
+#X obj 310 120 route BMP180 DTH GY30 CameraPi;
+#X obj 230 40 inlet;
+#X connect 0 0 16 0;
+#X connect 1 0 22 0;
+#X connect 2 0 20 0;
+#X connect 3 0 21 0;
+#X connect 4 0 0 0;
+#X connect 4 0 29 0;
+#X connect 4 1 1 0;
+#X connect 4 2 2 0;
+#X connect 4 3 3 0;
+#X connect 6 0 24 0;
+#X connect 7 0 23 0;
+#X connect 9 0 28 0;
+#X connect 10 0 9 0;
+#X connect 10 0 31 0;
+#X connect 12 0 44 0;
+#X connect 13 0 43 0;
+#X connect 14 0 39 0;
+#X connect 15 0 6 0;
+#X connect 15 0 30 0;
+#X connect 15 1 7 0;
+#X connect 15 2 17 0;
+#X connect 15 3 18 0;
+#X connect 15 4 19 0;
+#X connect 17 0 25 0;
+#X connect 18 0 26 0;
+#X connect 19 0 27 0;
+#X connect 29 0 33 0;
+#X connect 30 0 36 0;
+#X connect 31 0 34 0;
+#X connect 32 0 35 0;
+#X connect 37 0 32 0;
+#X connect 37 0 40 0;
+#X connect 37 1 12 0;
+#X connect 37 2 38 0;
+#X connect 37 3 14 0;
+#X connect 38 0 41 0;
+#X connect 40 0 13 0;
+#X connect 45 0 4 0;
+#X connect 45 1 15 0;
+#X connect 45 2 10 0;
+#X connect 45 3 37 0;
+#X connect 46 0 45 0;
+#X restore 550 80 pd MQTT_Data;
+#X obj 320 120 cnv 15 385 333 empty empty iot_sensor_data 17 16 0 18
+#212121 #d4fb79 0;
+#X obj 580 140 nbx 5 24 -1e+37 1e+37 0 0 port empty Configure\ TCP\ Port
+-6 -10 0 10 #ffffbb #000000 #ff7e79 0 256 0;
+#X obj 330 170 cnv 15 368 61 empty empty camera 2 4 0 14 #424242 #d4fb79
+0;
+#X obj 440 200 nbx 5 24 -1e+37 1e+37 0 0 empty xAxis x_axis 0 -8 0
+10 #fffc79 #000000 #73fdff 0 256 0;
+#X obj 540 200 nbx 5 24 -1e+37 1e+37 0 0 empty yAxis y_axis 0 -8 0
+10 #fffc79 #000000 #73fdff 0 256 0;
+#X obj 340 200 nbx 5 24 -1e+37 1e+37 0 0 r_score score score 0 -8 0
+10 #fffc79 #000000 #73fcd6 0 256 0;
+#X obj 650 190 bng 28 250 50 0 empty receivedCameraPi empty 17 7 0
+10 #ff6c6c #e4ffca #000000;
+#X obj 330 240 cnv 15 367 61 empty empty barometer 2 4 0 14 #424242
+#d4fb79 0;
+#X obj 330 310 cnv 15 367 61 empty empty dth\ sensor 2 4 0 14 #424242
+#d4fb79 0;
+#X obj 330 380 cnv 15 366 61 empty empty dth\ sensor 2 4 0 14 #424242
+#d4fb79 0;
+#X obj 540 270 nbx 5 24 -1e+37 1e+37 0 0 r_seaPressure seaPressure
+sea_lvl_pressure -2 -8 0 10 #d4fb79 #000000 #73fdff 0 256 0;
+#X obj 340 270 nbx 5 24 -1e+37 1e+37 0 0 r_atmPressure atmPressure
+pressure 0 -8 0 10 #d4fb79 #000000 #00fdff 0 256 0;
+#X obj 440 270 nbx 5 24 -1e+37 1e+37 0 0 r_altitude altitude altitude
+0 -8 0 10 #d4fb79 #000000 #00fdff 0 256 0;
+#X obj 650 260 bng 28 250 50 0 empty receivedBMP180 empty 17 7 0 10
+#ff7e79 #ffff80 #000000;
+#X obj 450 340 nbx 5 24 -1e+37 1e+37 0 0 r_humidity humidity humidity
+0 -8 0 10 #73fcd6 #000000 #fffb00 0 256 0;
+#X obj 340 340 nbx 5 24 -1e+37 1e+37 0 0 r_temperature temperature
+temperature 0 -8 0 10 #73fcd6 #000000 #fffb00 0 256 0;
+#X obj 650 330 bng 28 250 50 0 empty receivedDTH empty 17 7 0 10 #ff7e79
+#fed1b6 #000000;
+#X obj 340 410 nbx 5 24 -1e+37 1e+37 0 0 r_lightSensitivity lightSensitivity
+lumens 0 -8 0 10 #76d6ff #000000 #8efa00 0 256 0;
+#X obj 650 400 bng 28 250 50 0 empty receivedGY30 empty 17 7 0 10 #ff7e79
+#ffc1ff #000000;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 1 0 6 0;
+#X connect 1 0 8 0;
+#X connect 2 0 0 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X coords 0 -1 1 1 390 337 1 317 118;

@@ -1,0 +1,46 @@
+#N canvas 0 25 1680 913 12;
+#X obj 507 158 cnv 15 138 92 empty empty empty 20 12 0 14 #424242 #404040
+0;
+#X obj 689 178 notoname;
+#X symbolatom 560 170 5 0 0 0 - - -, f 5;
+#X obj 149 266 mtof;
+#X obj 169 236 unpack f f;
+#X obj 199 326 chimes_;
+#X obj 169 196 pack 0 0;
+#X floatatom 139 146 5 0 0 0 - - -, f 5;
+#X obj 510 170 nbx 3 16 -1e+37 1e+37 0 0 empty empty midi_note 0 -8
+0 10 #d4fb79 #000000 #00fa92 74 256 0;
+#X obj 239 376 *~;
+#X obj 508 230 hsl 128 16 0 1 0 0 empty empty gain -2 -8 0 10 #ffd479
+#000000 #00fa92 0 1;
+#X obj 508 200 hsl 128 16 0 127 0 0 empty empty velocity -2 -8 0 10
+#ffd479 #000000 #00fa92 0 1;
+#X obj 239 426 outlet~;
+#X obj 141 42 inlet;
+#X floatatom 169 296 5 0 0 0 - - -, f 5;
+#X floatatom 239 266 5 0 0 0 - - -, f 5;
+#X obj 59 196 s note_prev;
+#X obj 609 161 bng 32 250 50 0 empty empty trigger 5 4 0 6 #e9e98b
+#e8736a #000000;
+#X obj 277 48 inlet;
+#X obj 389 44 inlet;
+#X connect 1 0 2 0;
+#X connect 2 0 17 0;
+#X connect 3 0 14 0;
+#X connect 4 0 3 0;
+#X connect 4 1 15 0;
+#X connect 5 0 9 0;
+#X connect 6 0 4 0;
+#X connect 7 0 6 0;
+#X connect 7 0 16 0;
+#X connect 7 0 1 0;
+#X connect 7 0 8 0;
+#X connect 9 0 12 0;
+#X connect 10 0 9 1;
+#X connect 11 0 6 1;
+#X connect 13 0 7 0;
+#X connect 14 0 5 0;
+#X connect 15 0 5 1;
+#X connect 18 0 11 0;
+#X connect 19 0 10 0;
+#X coords 0 -1 1 1 142 97 1 505 155;

@@ -1,0 +1,76 @@
+#N canvas 0 25 1680 913 12;
+#X obj 360 270 cnv 15 110 86 empty empty empty 2 4 0 9 #212121 #76d6ff
+0;
+#X obj 110 420 outlet~;
+#X obj 450 280 bng 11 250 50 0 empty empty trigger -1 -5 0 5 #c14815
+#ffffff #8efa00;
+#X text 170 40 midi_note;
+#X obj 181 93 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#fcfcfc #000000 #000000 0 256 0;
+#X obj 182 67 inlet;
+#X obj 269 75 inlet;
+#X text 270 50 gain;
+#X floatatom 150 390 0 0 80 0 - - -;
+#X obj 360 280 hsl 77 10 0 1 0 0 empty empty gain 1 -7 0 7 #76d6ff
+#000000 #8efa00 0 1;
+#X obj 115 395 *~;
+#X obj 320 120 sine_synth;
+#X obj 170 270 hsl 77 10 0 100 0 0 empty empty velocity 3 -5 0 7 #76d6ff
+#000000 #8efa00 6840 1;
+#X obj 20 110 r randomize;
+#X obj 15 139 random 100;
+#X obj 30 160 / 100;
+#X obj 300 230 f;
+#X obj 23 219 loadbang;
+#X msg 17 253 90;
+#X obj 330 70 inlet;
+#X text 310 40 velocity;
+#X obj 380 70 inlet;
+#X obj 470 70 inlet;
+#X obj 560 70 inlet;
+#X obj 640 70 inlet;
+#X obj 700 70 inlet;
+#X text 449 49 distortion;
+#X text 390 50 detune;
+#X text 550 50 character;
+#X text 640 50 attack;
+#X text 700 50 decay;
+#X obj 360 320 hsl 77 10 110 180 0 1 empty empty attack 1 -7 0 8 #76d6ff
+#000000 #8efa00 2823 1;
+#X obj 360 300 hsl 77 10 0 0.5 0 1 empty empty detune 0 -7 0 8 #76d6ff
+#000000 #8efa00 456 1;
+#X obj 360 340 hsl 77 10 0.5 5 0 1 empty empty distortion 0 -6 0 8
+#76d6ff #000000 #8efa00 4222 1;
+#X obj 170 300 hsl 77 10 0.1 0.8 0 1 empty empty character -1 -7 0
+8 #76d6ff #000000 #8efa00 3800 1;
+#X connect 4 0 11 0;
+#X connect 4 0 2 0;
+#X connect 4 0 16 0;
+#X connect 5 0 4 0;
+#X connect 6 0 9 0;
+#X connect 8 0 10 1;
+#X connect 9 0 8 0;
+#X connect 10 0 1 0;
+#X connect 11 0 10 0;
+#X connect 11 1 32 0;
+#X connect 11 2 33 0;
+#X connect 11 3 34 0;
+#X connect 11 4 31 0;
+#X connect 12 0 16 1;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 9 0;
+#X connect 16 0 11 1;
+#X connect 17 0 18 0;
+#X connect 18 0 12 0;
+#X connect 19 0 12 0;
+#X connect 21 0 11 2;
+#X connect 21 0 32 0;
+#X connect 22 0 11 3;
+#X connect 22 0 33 0;
+#X connect 23 0 11 4;
+#X connect 23 0 34 0;
+#X connect 24 0 11 5;
+#X connect 24 0 31 0;
+#X connect 25 0 11 6;
+#X coords 0 -1 1 1 113 89 1 359 269;
