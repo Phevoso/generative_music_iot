@@ -38,7 +38,7 @@ Python Libraries
 * <a href="https://pypi.org/project/paho-mqtt/">paho-mqtt</a>
 * <a href="https://pypi.org/project/pymongo/">pymongo</a>
 
-Python libraries can be installed all at once by using the `requirmnets.txt` file.
+Python libraries can be installed all at once by using the `requirments.txt` file.
 
 Usage:
 ```shell
