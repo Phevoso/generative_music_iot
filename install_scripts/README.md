@@ -3,7 +3,7 @@
 This directory contains helper scripts that install all package and library dependencies needed for this project.<br/><br/>
 
 ## Compatability
-When it comes to the client system, the installer scripts currently only support Debian-based Linux Distros. All the dependencies are listed in a later section for manual installation.<br/><br/>
+When it comes to the IoT server system, the installer scripts currently only support Debian-based Linux Distros. All the dependencies are listed in a later section for manual installation.<br/><br/>
 
 Python 3.9 or higher is recommended for this project.<br/><br/>
 
@@ -17,7 +17,7 @@ $ ./install_dependencies.sh
 <br/>
 
 ## Purr Data Script
-`install_purr_data.sh` can be used to install <a href="https://agraef.github.io/purr-data/">Purr Data</a> on the client system along with all its dependencies.<br/><br/>
+`install_purr_data.sh` can be used to install <a href="https://agraef.github.io/purr-data/">Purr Data</a> on the IoT server along with all its dependencies.<br/><br/>
 Usage:
 ```shell
 $ ./install_purr_data.sh
@@ -46,8 +46,8 @@ $ pip install -r requirments.txt
 ```
 <br/>
 
-## <u>Raspberry Pi</u>
-The sesnor Raspberry Pi requires the same packages and python libraries as the client in addition to:
+## <u>Raspberry Pi</u> | <u>Sensors</u>
+The Raspberry Pi running the sesnors requires the same packages and python libraries as the IoT server in addition to:
 <br/>
 
 Additional Python Libraries
@@ -61,6 +61,38 @@ Usage:
 ```shell
 $ pip install -r requirments_sensors.txt
 ```
+<br/>
+
+## <u>Raspberry Pi</u> | <u>Camera</u>
+The Camera Raspberry Pi requires the same packages and python libraries as the IoT server in addition to:
+<br/>
+
+Additional Packages
+* python3-opencv
+
+<br/>
+
+Additional Python Libraries
+* <a href="https://pypi.org/project/argparse/">argparse</a>
+* <a href="https://pypi.org/project/numpy/">numpy</a>
+* <a href="https://pypi.org/project/opencv-python/">opencv-python</a>
+* <a href="https://pypi.org/project/tflite-support/">tflite-support</a>
+* <a href="https://pypi.org/project/protobuf/">protobuf</a>
+
+Python libraries can be installed all at once by using the `requirments_camera.txt` file.
+
+Usage:
+```shell
+$ pip install -r requirments_camera.txt
+```
+
+## Enabling the camera on the Raspberry Pi
+Camera support can be enabled from the raspi-config menu by running:
+
+```shell
+$ sudo raspi-config
+```
+
 <br/>
 
 ## <u>Purr Data Linux Dependencies</u>

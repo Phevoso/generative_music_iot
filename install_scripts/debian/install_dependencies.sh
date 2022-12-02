@@ -33,7 +33,7 @@ case "$key" in
   echo -e "\nExiting...\n";;
   *)
         if [[ "$(python3 --version 2>&1)" == *"not found"* ]]; then
-            echo -e "\n\n\e[1;31mError: Python 3 not found!\n\nPyton 3.9 or higher recommended for this project.\033[0m"
+            echo -e "\n\n\e[1;31mError: Python 3 not found!\n\nPyton 3.9 or higher is recommended for this project.\033[0m"
             exit
         fi
 
